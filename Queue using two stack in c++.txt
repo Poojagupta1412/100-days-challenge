@@ -1,0 +1,66 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int main() 
+{
+  int q, type, value;
+  char operation;
+  stack<int> S1, S2;
+  stack<char> S3, S4;
+    
+  cin >> q;
+  while(q--)
+  {
+    cin >> type;
+    if(type == 1)
+    {
+      cin >> value;
+      S1.push(value);
+    }
+    else if(type == 2)
+    {
+      S3.push('d');
+    }
+    else
+    {
+      S3.push('p');
+    }
+  }
+
+  // Perform the actual operations.
+  while(!S1.empty())
+  {
+    value = S1.top();
+    S1.pop();
+    S2.push(value);
+  }
+
+  while(!S3.empty())
+  {
+    value = S3.top();
+    S3.pop();
+    S4.push(value);
+  }
+
+  while(!S2.empty())
+  {
+    operation = S4.top();
+    value = S2.top();
+    S4.pop();
+
+    if(operation == 'p')
+    {
+      // Print.
+      cout << value << endl;
+    }
+    else
+    {
+      // Dequeue.
+      S2.pop();
+    }
+  }
+
+  return 0;
+}
